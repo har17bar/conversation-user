@@ -1,23 +1,19 @@
 import { NestFactory } from '@nestjs/core';
-import { Transport, MicroserviceOptions } from '@nestjs/microservices';
-import { UsersModule } from './users/users.module';
+import { Transport } from '@nestjs/microservices';
+import * as config from 'config';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
+
+const REDIS_CONFIG_HOST = config.get('redis').host;
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.connectMicroservice({
     transport: Transport.REDIS,
     options: {
-      url: 'redis://localhost:6379',
+      url: REDIS_CONFIG_HOST,
     },
   });
-  // const app = await NestFactory.createMicroservice<MicroserviceOptions>(UsersModule, {
-  //   transport: Transport.REDIS,
-  //   options: {
-  //     url: 'redis://localhost:6379',
-  //   },
-  // });
   await app.startAllMicroservicesAsync();
 }
 bootstrap();

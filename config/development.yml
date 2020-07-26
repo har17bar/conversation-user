@@ -1,0 +1,5 @@
+mongo:
+  host: mongodb://localhost
+  dbName: conversations
+redis:
+  host: redis://localhost:6379

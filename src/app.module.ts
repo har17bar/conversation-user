@@ -7,7 +7,10 @@ const MONGO_CONFIG = config.get('mongo');
 
 @Module({
   imports: [
-    MongooseModule.forRoot(`${MONGO_CONFIG.host}/${MONGO_CONFIG.dbName}`),
+    MongooseModule.forRoot(`${MONGO_CONFIG.host}/${MONGO_CONFIG.dbName}`,{
+      useCreateIndex: true,
+      useNewUrlParser: true
+    }),
     UsersModule,
   ],
   controllers: [],

@@ -1,4 +1,5 @@
-import {Document, Schema} from 'mongoose';
+import { Document, Schema } from 'mongoose';
+import * as Joi from '@hapi/joi';
 
 export const UsersSchema = new Schema({
   name: String,
@@ -10,3 +11,9 @@ export interface IUser extends Document {
   name: string;
   password: string;
 }
+
+export const UserJoiSchema = Joi.object({
+  name: Joi.string().min(3).required(),
+  password: Joi.string().min(3).required()
+});
+

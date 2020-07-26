@@ -14,4 +14,10 @@ export class UsersController {
   create(@Payload() user: IUser) {
     return this.appService.create(user);
   }
+
+  @MessagePattern({ service: 'user', slot: 'validatePassword' })
+  validatePassword(@Payload() user: IUser) {
+    return this.appService.validatePassword(user);
+  }
+
 }

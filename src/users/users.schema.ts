@@ -5,14 +5,14 @@ export const UsersSchema = new Schema({
   name: {
     type: String,
     unique: true,
-    required: true
+    required: true,
   },
   password: {
     type: String,
     unique: true,
-    required: true
+    required: true,
   },
-  salt: String
+  salt: String,
 });
 
 export interface IUser extends Document {
@@ -23,7 +23,10 @@ export interface IUser extends Document {
 }
 
 export const UserJoiSchema = Joi.object({
-  name: Joi.string().min(3).required(),
-  password: Joi.string().min(3).required()
+  name: Joi.string()
+    .min(3)
+    .required(),
+  password: Joi.string()
+    .min(3)
+    .required(),
 });
-

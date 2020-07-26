@@ -8,7 +8,7 @@ export class JoiPipe implements PipeTransform {
 
   transform(value: any, metadata: ArgumentMetadata) {
     const { error } = this.schema.validate(value, {
-      allowUnknown: true
+      allowUnknown: true,
     });
     if (error) {
       throw new RpcException(error.message);

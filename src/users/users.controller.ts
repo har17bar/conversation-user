@@ -4,7 +4,6 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 import { JoiPipe } from '../Joi.pipe';
 import { IUser, UserJoiSchema } from './users.schema';
 
-
 @Controller()
 export class UsersController {
   constructor(private readonly appService: UsersService) {}
@@ -19,5 +18,4 @@ export class UsersController {
   validatePassword(@Payload() user: IUser) {
     return this.appService.validatePassword(user);
   }
-
 }

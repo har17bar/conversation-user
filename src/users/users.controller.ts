@@ -18,4 +18,9 @@ export class UsersController {
   validatePassword(@Payload() user: IUser) {
     return this.appService.validatePassword(user);
   }
+
+  @MessagePattern({ service: 'user', slot: 'getByName' })
+  getByName(@Payload() user: IUser) {
+    return this.appService.getByName(user);
+  }
 }

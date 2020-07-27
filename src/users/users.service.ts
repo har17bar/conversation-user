@@ -8,6 +8,7 @@ import { RpcException } from '@nestjs/microservices';
 @Injectable()
 export class UsersService {
   constructor(@InjectModel('Users') private readonly userModel: Model<IUser>) {}
+
   async create(user: IUser) {
     await this.existenceException(user.name, 'exists');
     const salt = await bcrypt.genSalt();
@@ -16,6 +17,10 @@ export class UsersService {
     const newUser = new this.userModel(user);
     await newUser.save();
     return newUser;
+  }
+
+  async getByName(user: IUser){
+    await this.existenceException(user.name, 'notExists');
   }
 
   async validatePassword(user: IUser) {

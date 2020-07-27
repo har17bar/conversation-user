@@ -47,6 +47,7 @@ export class UsersService {
         if (user) {
           throw new RpcException('User already exists');
         }
+        break;
       case 'notExists':
         if (!user) {
           throw new RpcException('Invalid credentials');
